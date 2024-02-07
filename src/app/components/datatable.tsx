@@ -1,10 +1,17 @@
-"use client"
 
 import React, { useState } from 'react';
 
 interface DataTableProps {
     data: any[]; // Sample data to load into the table
 }
+
+const sampleData = [
+    ['Name', 'Age', 'Email'],
+    ['John Doe', 25, 'johndoe@example.com'],
+    ['Jane Smith', 30, 'janesmith@example.com'],
+    ['Bob Johnson', 35, 'bobjohnson@example.com'],
+  ];
+  
 
 const DataTable: React.FC<DataTableProps> = ({ data }) => {
     const [tableData, setTableData] = useState(data);
@@ -70,4 +77,5 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
 };
 
 export default DataTable;
+
 
