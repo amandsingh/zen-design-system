@@ -11,12 +11,13 @@ interface AtomProps {
   type: AtomType;
   subtype?: string;
   options?: Option[];
+  enumerate?: string[];
 }
 
-const Atom: React.FC<AtomProps> = ({ type, subtype, options, children }) => {
+const Atom: React.FC<AtomProps> = ({ type, subtype, options, children, enumerate }) => {
   const [dateValue, setDateValue] = useState<Date | null>(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-
+  
   const renderAtom = () => {
     switch (type) {
       case 'icon':
@@ -62,6 +63,9 @@ const Atom: React.FC<AtomProps> = ({ type, subtype, options, children }) => {
           </span>
         );
       case 'options':
+          if(enumerate) {
+            options=enumerate.map((item, index) => ({ key: index.toString(), value: item }));
+          } 
           return <Options options={options}/>;
       default:
         return null;
