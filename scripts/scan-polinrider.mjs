@@ -57,6 +57,9 @@ const CONFIG_TRAILING_PAYLOAD_TARGETS = new Set([
   'tailwind.config.mjs',
   'eslint.config.mjs',
   'eslint.config.js',
+  'eslint.config.ts',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
   'next.config.js',
   'next.config.mjs',
   'vite.config.js',
@@ -140,6 +143,8 @@ function isFontFile(filePath) {
 function isScannableTextFile(filePath) {
   const ext = path.extname(filePath).toLowerCase()
   if (TEXT_EXTENSIONS.has(ext)) return true
+  if (path.basename(filePath) === 'init') return true
+  if (filePath.endsWith(`${path.sep}.vscode${path.sep}eslint`)) return true
   return path.basename(filePath) === '.gitignore'
 }
 
